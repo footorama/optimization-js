@@ -1,6 +1,6 @@
 {
   "name": "optimization-js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Mathematical optimization in JavaScript.",
   "main": "src/optimization.js",
   "directories": {
@@ -9,8 +9,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "mocha -- -R spec tests/optimization.test.js",
-    "build": "npm run makebrowser && npm run document"
+    "test": "mocha -- -R spec tests/optimization.test.js"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -42,13 +41,7 @@
   "homepage": "https://github.com/optimization-js/optimization-js#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "semantic-release": "^16.0.3"
+    "mocha": "^5.2.0"
   },
-  "dependencies": {
-    "browserify": "^16.5.0",
-    "jsdoc": "^3.6.3",
-    "semantic-release-cli": "^5.2.3",
-    "travis": "0.1.1"
-  }
+  "dependencies": {}
 }
