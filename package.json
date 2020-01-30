@@ -10,15 +10,7 @@
   },
   "scripts": {
     "test": "mocha -- -R spec tests/optimization.test.js",
-    "check-coverage": "istanbul check-coverage --statements 100 --functions 100 --lines 100",
-    "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once",
-    "document": "rimraf docs && jsdoc src/optimization.js -d docs --readme README.md",
-    "makebrowser": "rimraf dist && browserify src/optimization.js --standalone optimjs -o dist/optimization.js",
-    "build": "npm run makebrowser && npm run document",
-    "commit": "git-cz",
-    "commitall": "npm run build && git add -A && git-cz"
+    "build": "npm run makebrowser && npm run document"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -50,19 +42,11 @@
   "homepage": "https://github.com/optimization-js/optimization-js#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "codecov.io": "^0.1.6",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "ghooks": "^2.0.4",
-    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
-    "rimraf": "^2.7.1",
-    "semantic-release": "^16.0.3",
-    "travis-deploy-once": "^5.0.0"
+    "semantic-release": "^16.0.3"
   },
   "dependencies": {
     "browserify": "^16.5.0",
-    "inchjs": "^0.4.1",
     "jsdoc": "^3.6.3",
     "semantic-release-cli": "^5.2.3",
     "travis": "0.1.1"
