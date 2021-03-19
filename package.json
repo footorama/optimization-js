@@ -2,6 +2,7 @@
   "name": "optimization-js",
   "version": "2.0.2",
   "description": "Mathematical optimization in JavaScript.",
+	"types": "src/optimization.d.ts",
   "main": "src/optimization.js",
   "directories": {
     "example": "examples",
