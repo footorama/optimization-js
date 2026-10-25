@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+var assert = require('node:assert/strict');
 
 var optimjs = require('../src/optimization')
 var quad_examples = require('../examples/example_quadratic.js')
@@ -28,8 +28,8 @@ function test_quadratic_example(eg){
     var f = round(solution.fncvalue, 2)
 
     // check that the rounded result corresponds to the expected solution
-    expect(x).to.deep.equal([1.0, -0.5, -2.0]);
-    expect(f).to.deep.equal(0.0);
+    assert.deepStrictEqual(x, [1.0, -0.5, -2.0]);
+    assert.deepStrictEqual(f, 0.0);
 }
 
 describe('Examples', function(){
@@ -58,25 +58,57 @@ describe('Ask and tell optimizers', function(){
         var x = solution[0][0]
         var y = solution[0][1]
 
-        expect(x[0]).to.be.greaterThan(0.5).lessThan(1.5)
-        expect(x[1]).to.be.greaterThan(-1.5).lessThan(-0.5)
-        expect(y).to.be.greaterThan(-0.3).lessThan(0.3)
+        {
+          const actualValue = x[0];
+          assert.ok(actualValue > 0.5);
+          assert.ok(actualValue < 1.5);
+        }
+        {
+          const actualValue = x[1];
+          assert.ok(actualValue > -1.5);
+          assert.ok(actualValue < -0.5);
+        }
+        {
+          const actualValue = y;
+          assert.ok(actualValue > -0.3);
+          assert.ok(actualValue < 0.3);
+        }
 
         // solution using the ask and tell object
         var x = solution[1][0]
         var y = solution[1][1]
 
-        expect(x[0]).to.be.greaterThan(0.5).lessThan(1.5)
-        expect(x[1]).to.be.greaterThan(-1.5).lessThan(-0.5)
-        expect(y).to.be.greaterThan(-0.3).lessThan(0.3)
+        {
+          const actualValue = x[0];
+          assert.ok(actualValue > 0.5);
+          assert.ok(actualValue < 1.5);
+        }
+        {
+          const actualValue = x[1];
+          assert.ok(actualValue > -1.5);
+          assert.ok(actualValue < -0.5);
+        }
+        {
+          const actualValue = y;
+          assert.ok(actualValue > -0.3);
+          assert.ok(actualValue < 0.3);
+        }
     })
     it('example of mixed optimization runs ok', function(){
         var solution = bb_examples.example_bb_mixed_minimization();
         var x = solution.best_x
 
-        expect(x[0]).to.be.greaterThan(-3.1).lessThan(-2.9)
-        expect(x[1]).to.be.greaterThan(62).lessThan(66)
-        expect(x[2]).to.be.equal('relu')
+        {
+          const actualValue = x[0];
+          assert.ok(actualValue > -3.1);
+          assert.ok(actualValue < -2.9);
+        }
+        {
+          const actualValue = x[1];
+          assert.ok(actualValue > 62);
+          assert.ok(actualValue < 66);
+        }
+        assert.strictEqual(x[2], "relu")
     })
     it('allows to sample n points at a time', function(){
         var optimizer = optimjs.RandomOptimizer([
@@ -84,7 +116,7 @@ describe('Ask and tell optimizers', function(){
         ])
 
         var X = optimizer.ask(2)
-        expect(X.length).to.be.equal(2)
+        assert.strictEqual(X.length, 2)
     })
 })
 
@@ -101,10 +133,12 @@ describe('Space', function(){
         // ensure that the space does not raise an exceptions
         space = optimjs.to_space(space)
 
-        expect(function(){
-            optimjs.to_space('A')
-        }).to.throw(
-            'Unknown space definition'
+        assert.throws(
+          function () {
+            optimjs.to_space("A");
+          },
+          (error) =>
+            (error instanceof Error ? error.message : String(error)).includes('Unknown space definition'),
         )
     })
     it('should work with integer dimensions', function(){
@@ -121,7 +155,7 @@ describe('Space', function(){
         }
 
         // confirm that the whole range is sampled, no more, no less
-        expect(r).to.deep.equal({0:1, 1:1, 2:1, 3:1});
+        assert.deepStrictEqual(r, { 0: 1, 1: 1, 2: 1, 3: 1 });
     })
     it('should work with categorical dimensions', function(){
         // test creation of the Integer dimension
@@ -137,6 +171,6 @@ describe('Space', function(){
         }
 
         // confirm that the whole range is sampled, no more, no less
-        expect(r).to.deep.equal({'a':1, 1:1, 2.0:1, 'zazz': 1, true:1});
+        assert.deepStrictEqual(r, { a: 1, 1: 1, 2.0: 1, zazz: 1, true: 1 });
     })
 })

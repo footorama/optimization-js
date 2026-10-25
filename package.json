@@ -2,7 +2,7 @@
   "name": "optimization-js",
   "version": "2.0.5",
   "description": "Mathematical optimization in JavaScript.",
-	"types": "src/optimization.d.ts",
+  "types": "src/optimization.d.ts",
   "main": "src/optimization.js",
   "directories": {
     "example": "examples",
@@ -41,7 +41,6 @@
   },
   "homepage": "https://github.com/optimization-js/optimization-js#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
     "mocha": "^5.2.0"
   },
   "dependencies": {}
