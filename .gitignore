@@ -48,3 +48,15 @@ Temporary Items
 
 node_modules
 coverage
+
+# Merge-tool temporary files
+*_BACKUP_[0-9]*
+*_BASE_[0-9]*
+*_LOCAL_[0-9]*
+*_REMOTE_[0-9]*
+
+# Backup files left by merge tools
+*.orig
+
+# Rejected patches from patch/apply operations
+*.rej
